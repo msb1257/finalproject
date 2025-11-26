@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>DevOps24/7</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #020617;
+      --bg-alt: #0f172a;
+      --accent: #22c55e;
+      --accent-soft: rgba(34, 197, 94, 0.1);
+      --border: #1f2937;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background: radial-gradient(circle at top, #1f2937 0, #020617 55%);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* HEADER */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(2, 6, 23, 0.95);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(31, 41, 55, 0.8);
+    }
+
+    .header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0.6rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .logo {
+      font-weight: 800;
+      letter-spacing: 0.03em;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .logo-pill {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 12px rgba(34, 197, 94, 0.8);
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      font-size: 0.9rem;
+    }
+
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      padding: 0.32rem 0.8rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      transition: all 0.18s ease;
+    }
+
+    nav a:hover {
+      color: var(--text);
+      border-color: rgba(148, 163, 184, 0.4);
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    nav a.active {
+      color: #022c22;
+      background: var(--accent);
+      border-color: transparent;
+    }
+
+    /* SCROLLING TAG */
+
+    .ticker-wrap {
+      border-top: 1px solid rgba(31, 41, 55, 0.8);
+      border-bottom: 1px solid rgba(31, 41, 55, 0.8);
+      background: rgba(15, 23, 42, 0.85);
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .ticker-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0.35rem 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .ticker-label {
+      font-weight: 600;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      background: rgba(15, 23, 42, 0.9);
+      flex-shrink: 0;
+    }
+
+    .ticker-text {
+      position: relative;
+      overflow: hidden;
+      flex: 1;
+    }
+
+    .ticker-scroll {
+      display: inline-block;
+      padding-left: 100%;
+      animation: ticker 18s linear infinite;
+      white-space: nowrap;
+    }
+
+    @keyframes ticker {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-100%);
+      }
+    }
+
+    /* MAIN */
+
+    main {
+      flex: 1;
+      max-width: 1100px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 1.5rem 1.25rem 4.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.2fr);
+      gap: 1.8rem;
+      align-items: center;
+    }
+
+    .hero-title {
+      font-size: 2.1rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+
+    .hero-sub {
+      font-size: 0.95rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    .hero-tagline {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.35rem 0.75rem;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      border: 1px solid rgba(34, 197, 94, 0.5);
+      font-size: 0.8rem;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.6rem;
+      font-size: 0.85rem;
+    }
+
+    .hero-card {
+      border-radius: 0.9rem;
+      padding: 0.75rem 0.8rem;
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid rgba(31, 41, 55, 0.9);
+    }
+
+    .hero-card-title {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      color: var(--muted);
+      margin-bottom: 0.25rem;
+    }
+
+    .hero-card-main {
+      font-size: 0.9rem;
+    }
+
+    .hero-right {
+      border-radius: 1.2rem;
+      border: 1px solid rgba(31, 41, 55, 0.9);
+      background: radial-gradient(circle at top, #111827 0, #020617 65%);
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      font-size: 0.86rem;
+    }
+
+    .hero-right-title {
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin-top: 0.25rem;
+    }
+
+    .pill {
+      padding: 0.25rem 0.55rem;
+      border-radius: 999px;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    .section {
+      border-radius: 1rem;
+      border: 1px solid rgba(31, 41, 55, 0.9);
+      background: rgba(2, 6, 23, 0.95);
+      padding: 1rem 1rem 0.8rem;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 0.75rem;
+      margin-bottom: 0.6rem;
+      align-items: baseline;
+    }
+
+    .section-title {
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    .section-sub {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .simple-list {
+      font-size: 0.85rem;
+      color: var(--muted);
+      padding-left: 1rem;
+      margin: 0.15rem 0 0.6rem;
+    }
+
+    .simple-list li {
+      margin-bottom: 0.25rem;
+    }
+
+    /* CONTACT SECTION (BOTTOM-LEFT AREA) */
+
+    .contact-section {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      font-size: 0.88rem;
+      padding-top: 0.2rem;
+    }
+
+    .contact-item-label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.11em;
+      color: var(--muted);
+    }
+
+    .contact-highlight {
+      font-family: "SF Mono", "Roboto Mono", ui-monospace, Menlo, Monaco,
+        Consolas, "Liberation Mono", "Courier New", monospace;
+      padding: 0.35rem 0.65rem;
+      border-radius: 0.65rem;
+      border: 1px dashed rgba(55, 65, 81, 0.9);
+      background: rgba(15, 23, 42, 0.9);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .contact-label-pill {
+      font-size: 0.7rem;
+      padding: 0.1rem 0.45rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+    }
+
+    /* MY TEACHER BOX (BOTTOM-RIGHT FIXED) */
+
+    .teacher-box {
+      position: fixed;
+      right: 1rem;
+      bottom: 1rem;
+      z-index: 30;
+      width: 230px;
+      max-width: 70vw;
+      border-radius: 1rem;
+      background: rgba(15, 23, 42, 0.96);
+      border: 1px solid rgba(34, 197, 94, 0.4);
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.7);
+      padding: 0.75rem 0.9rem;
+      font-size: 0.82rem;
+    }
+
+    .teacher-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.35rem;
+    }
+
+    .teacher-title span {
+      font-weight: 600;
+      font-size: 0.86rem;
+    }
+
+    .teacher-badge {
+      font-size: 0.7rem;
+      padding: 0.1rem 0.45rem;
+      border-radius: 999px;
+      background: rgba(34, 197, 94, 0.1);
+      border: 1px solid rgba(34, 197, 94, 0.7);
+      color: var(--accent);
+    }
+
+    .teacher-body {
+      color: var(--muted);
+      margin-bottom: 0.45rem;
+    }
+
+    .teacher-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.35rem;
+      padding: 0.35rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      background: rgba(15, 23, 42, 0.95);
+      cursor: default;
+      font-size: 0.78rem;
+    }
+
+    .dot-green {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 8px rgba(34, 197, 94, 0.9);
+      flex-shrink: 0;
+    }
+
+    /* FOOTER */
+
+    footer {
+      border-top: 1px solid rgba(31, 41, 55, 0.9);
+      background: rgba(2, 6, 23, 0.98);
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0.6rem 1.25rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 0.75rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 800px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .header-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      nav {
+        width: 100%;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding-bottom: 0.15rem;
+      }
+
+      .teacher-box {
+        right: 0.75rem;
+        bottom: 0.75rem;
+        width: 78vw;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER -->
+  <header>
+    <div class="header-inner">
+      <div class="logo">
+        <span class="logo-pill"></span>
+        <span>DevOps24/7</span>
+      </div>
+      <nav>
+        <a href="#home" class="active">Home</a>
+        <a href="#issues">Issues</a>
+        <a href="#tasks">Tasks</a>
+        <a href="#pps">PPS</a>
+        <a href="#workshops">Workshops</a>
+        <a href="#keywords">keywords</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- SCROLLING TAG -->
+  <div class="ticker-wrap">
+    <div class="ticker-inner">
+      <div class="ticker-label">This Week</div>
+      <div class="ticker-text">
+        <span class="ticker-scroll">
+          DevOps issues this week • CI pipeline failures • Kubernetes pod crash
+          loops • Nginx 502/504 errors • Deploy rollbacks • AWS cost spikes •
+          Git merge conflicts • DevOps issues this week • CI pipeline failures •
+          Kubernetes pod crash loops • Nginx 502/504 errors • Deploy rollbacks •
+          AWS cost spikes • Git merge conflicts •
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <main>
+    <!-- HOME / HERO -->
+    <section id="home" class="hero">
+      <div>
+        <div class="hero-tagline">
+          <span>On-call for your pipelines</span>
+        </div>
+        <div class="hero-title">DevOps help, 24/7.</div>
+        <div class="hero-sub">
+          One place to track your DevOps issues, daily tasks, PPS notes,
+          workshops and important keywords. Keep your infra, pipelines and
+          learning in sync.
+        </div>
+
+        <div class="hero-grid">
+          <div class="hero-card">
+            <div class="hero-card-title">Today</div>
+            <div class="hero-card-main">
+              Check open <strong>Issues</strong> and convert into clear
+              <strong>Tasks</strong>.
+            </div>
+          </div>
+          <div class="hero-card">
+            <div class="hero-card-title">Learning</div>
+            <div class="hero-card-main">
+              Note key topics under <strong>PPS</strong> &amp;
+              <strong>keywords</strong> for quick revision.
+            </div>
+          </div>
+          <div class="hero-card">
+            <div class="hero-card-title">Support</div>
+            <div class="hero-card-main">
+              Use <strong>Workshops</strong> to plan live practice / doubt
+              sessions.
+            </div>
+          </div>
+          <div class="hero-card">
+            <div class="hero-card-title">Focus</div>
+            <div class="hero-card-main">
+              One simple page instead of 10 different tools and chats.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div>
+          <div class="hero-right-title">Quick Overview</div>
+          <div class="section-sub">
+            Use the tabs above to manage your DevOps journey:
+          </div>
+          <div class="pill-row">
+            <span class="pill">Home – summary</span>
+            <span class="pill">Issues – what is broken</span>
+            <span class="pill">Tasks – what to do</span>
+            <span class="pill">PPS – your notes</span>
+            <span class="pill">Workshops – practice</span>
+            <span class="pill">keywords – fast revision</span>
+          </div>
+        </div>
+        <div>
+          <div class="hero-right-title">DevOps issues this week</div>
+          <ul class="simple-list">
+            <li>Track incidents you faced.</li>
+            <li>Write root cause + small fix steps.</li>
+            <li>Convert repeat issues into tasks.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ISSUES -->
+    <section id="issues" class="section">
+      <div class="section-header">
+        <div class="section-title">Issues</div>
+        <div class="section-sub">List DevOps problems you faced.</div>
+      </div>
+      <ul class="simple-list">
+        <li>Example: Jenkins build stuck at 99%.</li>
+        <li>Example: Kubernetes pod in CrashLoopBackOff.</li>
+        <li>Example: Nginx 502 after deployment.</li>
+      </ul>
+    </section>
+
+    <!-- TASKS -->
+    <section id="tasks" class="section">
+      <div class="section-header">
+        <div class="section-title">Tasks</div>
+        <div class="section-sub">Convert issues into action items.</div>
+      </div>
+      <ul class="simple-list">
+        <li>Example: Add health checks for new microservice.</li>
+        <li>Example: Create rollback script for Nginx config.</li>
+        <li>Example: Document Jenkins shared library usage.</li>
+      </ul>
+    </section>
+
+    <!-- PPS -->
+    <section id="pps" class="section">
+      <div class="section-header">
+        <div class="section-title">PPS</div>
+        <div class="section-sub">Your personal notes / problem → solution.</div>
+      </div>
+      <ul class="simple-list">
+        <li>Problem, Process, Solution style notes for every issue.</li>
+        <li>Use small bullet points, not big paragraphs.</li>
+      </ul>
+    </section>
+
+    <!-- WORKSHOPS -->
+    <section id="workshops" class="section">
+      <div class="section-header">
+        <div class="section-title">Workshops</div>
+        <div class="section-sub">Plan practice sessions & live labs.</div>
+      </div>
+      <ul class="simple-list">
+        <li>Example: Docker basics – build, tag, push image.</li>
+        <li>Example: CI/CD pipeline end-to-end on AWS.</li>
+      </ul>
+    </section>
+
+    <!-- KEYWORDS + CONTACT (BOTTOM-LEFT AREA) -->
+    <section id="keywords" class="section">
+      <div class="section-header">
+        <div class="section-title">keywords</div>
+        <div class="section-sub">
+          Dump all important DevOps terms for quick revision.
+        </div>
+      </div>
+      <ul class="simple-list">
+        <li>Example: Blue/Green Deploy, Canary, Rolling update.</li>
+        <li>Example: IaC, GitOps, Observability, SRE.</li>
+      </ul>
+
+      <!-- CONTACT AREA (BOTTOM-LEFT STYLE) -->
+      <div class="contact-section">
+        <div class="section-title" style="margin-top: 0.3rem">
+          Contact Us
+        </div>
+
+        <div>
+          <div class="contact-item-label">WhatsApp</div>
+          <div class="contact-highlight">
+            <span class="contact-label-pill">WA</span>
+            <span>+91-90000-00000</span>
+          </div>
+        </div>
+
+        <div>
+          <div class="contact-item-label">Email</div>
+          <div class="contact-highlight">
+            <span class="contact-label-pill">Mail</span>
+            <span>support@devops247.com</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- MY TEACHER BOX (BOTTOM-RIGHT) -->
+  <div class="teacher-box">
+    <div class="teacher-title">
+      <span>My Teacher</span>
+      <span class="teacher-badge">DevOps Guide</span>
+    </div>
+    <div class="teacher-body">
+      Note your doubts here and discuss in the next session. Use the tabs
+      above to keep everything ready.
+    </div>
+    <div class="teacher-cta">
+      <span class="dot-green"></span>
+      <span>Always on for your DevOps questions.</span>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <span>© DevOps24/7</span>
+      <span>Organize your DevOps issues, tasks & learning in one place.</span>
+    </div>
+  </footer>
+
+  <script>
+    // simple active tab highlight on click
+    const navLinks = document.querySelectorAll("nav a");
+    navLinks.forEach((link) => {
+      link.addEventListener("click", () => {
+        navLinks.forEach((l) => l.classList.remove("active"));
+        link.classList.add("active");
+      });
+    });
+  </script>
+</body>
+</html>
